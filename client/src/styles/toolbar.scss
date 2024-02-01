@@ -1,0 +1,62 @@
+@import "./variables";
+
+.toolbar {
+  height: $toolbar-height;
+  background-color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  box-shadow: 0 4px 5px gray;
+  z-index: 2;
+  padding: 0 10px;
+  gap: 10px;
+}
+
+.toolbar__btn {
+  width: 25px;
+  height: 25px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-size: cover;
+
+  &.brush {
+    background: url("../assets/brush.svg") no-repeat center center;
+  }
+  &.rect {
+    background: url("../assets/rect.svg") no-repeat center center;
+  }
+  &.circle {
+    background: url("../assets/circle.svg") no-repeat center center;
+  }
+  &.eraser {
+    background: url("../assets/eraser.svg") no-repeat center center;
+  }
+  &.line {
+    background: url("../assets/line.svg") no-repeat center center;
+  }
+  &.undo {
+    margin-left: auto;
+    background: url("../assets/undo.svg") no-repeat center center;
+  }
+  &.redo {
+    background: url("../assets/redo.svg") no-repeat center center;
+  }
+  &.save {
+    background: url("../assets/save.svg") no-repeat center center;
+  }
+}
+
+.setting-bar {
+  height: $toolbar-height;
+  background-color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  box-shadow: 0 4px 5px gray;
+  top: $toolbar-height;
+  padding: 0 10px;
+  gap: 10px;
+}
