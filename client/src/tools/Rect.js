@@ -1,8 +1,8 @@
 import Tool from './Tool';
 
 class Rect extends Tool {
-  constructor(canvas) {
-    super(canvas);
+  constructor(canvas, socket, sessionId) {
+    super(canvas, socket, sessionId);
     this.listen();
   }
 
@@ -15,7 +15,18 @@ class Rect extends Tool {
 
   mouseUpHandler(e) {
     this.mouseDown = false;
-
+    this.socket.send(JSON.stringify({
+      method: 'draw',
+      id: this.sessionId,
+      figure: {
+        type: 'rect',
+        x: this.startX,
+        y: this.startY,
+        width: this.width,
+        height: this.height,
+        color: this.ctx.fillStyle,
+      }
+    }));
   }
 
   mouseDownHandler(e) {
@@ -33,10 +44,10 @@ class Rect extends Tool {
     if (this.mouseDown) {
       let currentX = e.pageX - e.target.offsetLeft;
       let currentY = e.pageY - e.target.offsetTop;
-      let width = currentX - this.startX;
-      let height = currentY - this.startY;
+      this.width = currentX - this.startX;
+      this.height = currentY - this.startY;
 
-      this.draw(this.startX, this.startY, width, height);
+      this.draw(this.startX, this.startY, this.width, this.height);
     }
   }
 
@@ -54,6 +65,15 @@ class Rect extends Tool {
       this.ctx.fill();
       this.ctx.stroke();
     };
+  }
+
+  // Static functions
+  static draw(ctx, x, y, w, h, color) {
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.rect(x, y, w, h);
+    ctx.fill();
+    ctx.stroke();
   }
 }
 
