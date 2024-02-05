@@ -27,11 +27,16 @@ npm install
 ```
 3. Install dependencies for server
 ```bash
-cd ../server
-npm install
-```
-_if you are in the root of project_
-```bash
 cd ./server
 npm install
+```
+4. Run server
+```bash
+cd ./server
+npm run dev
+```
+5. Run client
+```bash
+cd ./client
+npm start
 ```
